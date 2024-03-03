@@ -43,8 +43,7 @@ class TelaInicial extends Phaser.Scene {
         detalhes.on('pointerover', () => {
             detalhes.setScale(0.9);
         });
-
-        detalhes.setInteractive();
+        
         detalhes.on('pointerdown', () => {
             //Exibir detalhes quando o botão "detalhes" é clicado
             this.scene.start('info');
