@@ -12,6 +12,8 @@
     <script src="Scene2.js"></script>
     <script src="Scene3.js"></script>
     <script src="FinalScene.js"></script>
+    <script src="TelaInicial.js"></script>
+    <script src="Info.js"></script>
     <title>JOGO DO PARKOUR</title>
 
     <!--Centraliza os elementos na tela-->
@@ -34,7 +36,7 @@
         height: 600,
 
         //construção das cenas integradas
-        scene: [MainScene, Scene, Scene3, FinalScene],
+        scene: [TelaInicial, Info, MainScene, Scene, Scene3, FinalScene],
         physics: {
             default: 'arcade',
             arcade: {
