@@ -14,9 +14,10 @@ class TelaInicial extends Phaser.Scene {
 
     create() {
 
-        // Cria o mapa e as camadas
+        // Cria a imagem de fundo
         const background = this.add.image(400, 300, 'tela').setScale(6);
 
+        //botões "play" e "detalhes"
         const play = this.add.image(400, 300, 'play').setOrigin(0.5).setScale(1.4);
         const detalhes = this.add.image(400, play.y + play.height * play.scaleY + 80, 'detalhes').setOrigin(0.5).setScale(0.7);
 
@@ -37,6 +38,7 @@ class TelaInicial extends Phaser.Scene {
         });
 
 
+        //botão "detalhes" interativo
         detalhes.setInteractive();
         detalhes.on('pointerover', () => {
             detalhes.setScale(0.9);
@@ -44,7 +46,7 @@ class TelaInicial extends Phaser.Scene {
 
         detalhes.setInteractive();
         detalhes.on('pointerdown', () => {
-            // Iniciar a cena principal quando o botão "play" é clicado
+            //Exibir detalhes quando o botão "detalhes" é clicado
             this.scene.start('info');
         });
 
