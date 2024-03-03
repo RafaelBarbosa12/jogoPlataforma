@@ -6,7 +6,7 @@
 
 3. Controles: (As setas para direita e esquerda movimentam o personagem, a seta para cima pula)
 
-4. Link do código (GitHub Individual): (insira aqui o link para o código do seu Projeto Individual)
+4. Link do código (GitHub Individual): https://github.com/RafaelBarbosa12/jogoPlataforma
 
 5. Link da versão jogável (GitHub Pages): (insira aqui o link da versão jogável do seu Projeto Individual)
 
