@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Importa o framework Phaser-->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+
+    <!--Conecta todas as cenas dentro do HTML-->
+    <script src="Scene1.js"></script>
+    <script src="Scene2.js"></script>
+    <script src="Scene3.js"></script>
+    <script src="FinalScene.js"></script>
+    <title>JOGO DO PARKOUR</title>
+
+    <!--Centraliza os elementos na tela-->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style> 
+    <script>
+
+    //configurações do jogo
+    var config = {
+        pixelArt: true,
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+
+        //construção das cenas integradas
+        scene: [MainScene, Scene, Scene3, FinalScene],
+        physics: {
+            default: 'arcade',
+            arcade: {
+                
+                //define o valor da gravidade
+                gravity: { y: 330 },
+                debug: true
+            }
+        }
+    };
+    
+    //Variável do personagem principal
+    var tyler;
+    
+    //Inicia o jogo
+    var game = new Phaser.Game(config);
+    </script>
+</head>
+</body>
+</html>
