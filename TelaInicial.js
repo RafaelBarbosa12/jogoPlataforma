@@ -8,7 +8,7 @@ class TelaInicial extends Phaser.Scene {
     preload() {
         // Carrega os recursos necessários
         this.load.image('tela', 'assets/tela.jpeg');
-        this.load.image('play', 'assets/play.png');
+        this.load.image('play', 'assets/Play.png');
         this.load.image('detalhes', 'assets/Detalhes.png');
     }
 
