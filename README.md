@@ -8,6 +8,6 @@
 
 4. Link do código (GitHub Individual): https://github.com/RafaelBarbosa12/jogoPlataforma
 
-5. Link da versão jogável (GitHub Pages): (insira aqui o link da versão jogável do seu Projeto Individual)
+5. Link da versão jogável (GitHub Pages): https://rafaelbarbosa12.github.io/jogoPlataforma/
 
 6. Dúvidas, dificuldades ou comentários? tive que buscar muito conhecimento na internet e de códigos antigos para conseguir executar todo esse código, mas sinto que aprendi muito nessa atividade
