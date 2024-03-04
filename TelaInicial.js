@@ -18,8 +18,8 @@ class TelaInicial extends Phaser.Scene {
         const background = this.add.image(400, 300, 'tela').setScale(6);
 
         //botões "play" e "detalhes"
-        const play = this.add.image(400, 300, 'play').setScale(1.4);
-        const detalhes = this.add.image(400, play.y + play.height * play.scaleY + 80, 'detalhes').setOrigin(0.5).setScale(0.7);
+        var play = this.add.image(400, 300, 'play').setScale(1.4);
+        var detalhes = this.add.image(400, play.y + play.height * play.scaleY + 80, 'detalhes').setOrigin(0.5).setScale(0.7);
 
         // Habilitar interatividade e adicionar evento de clique ao botão "play"
         play.setInteractive();
@@ -43,7 +43,7 @@ class TelaInicial extends Phaser.Scene {
         detalhes.on('pointerover', () => {
             detalhes.setScale(0.9);
         });
-        
+
         detalhes.on('pointerdown', () => {
             //Exibir detalhes quando o botão "detalhes" é clicado
             this.scene.start('info');
