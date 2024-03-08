@@ -10,10 +10,6 @@
     <!--Conecta todas as cenas dentro do HTML-->
     <script src="Scene1.js"></script>
     <script src="Scene2.js"></script>
-    <script src="Scene3.js"></script>
-    <script src="FinalScene.js"></script>
-    <script src="TelaInicial.js"></script>
-    <script src="Info.js"></script>
     <title>TYLER'S PARKOUR</title>
 
     <!--Centraliza os elementos na tela-->
@@ -36,7 +32,7 @@
         height: 600,
 
         //construção das cenas integradas
-        scene: [TelaInicial, Info, MainScene, Scene, Scene3, FinalScene],
+        scene: [MainScene, Scene],
         physics: {
             default: 'arcade',
             arcade: {
