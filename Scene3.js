@@ -1,57 +1,39 @@
-//Declaração das variaveis fora do escopo da classe para que as variaveis funcionem em todas as cenas
-var tempo = 0;
-var tempotext;
-var resultado = 0;
-hasBeenToMain = 0
-recordes = []
-
-//Início da classe MainScene
-class MainScene extends Phaser.Scene {
+//Início da classe Scene3
+class Scene3 extends Phaser.Scene {
     constructor() {
         super({
-            key: 'mainScene'
+            key: 'Scene3'
         });
     }
 
     //Carrega as imagens do jogo
     preload() {
-        this.load.image('floresta', 'assets/floresta.avif');
-        this.load.image('ground', 'assets/pedra.webp');
+        this.load.image('universo', 'assets/universo.jpg');
+        this.load.image('nave', 'assets/nave.png');
         this.load.spritesheet('tyler', 'assets/Persona-principal.png', { frameWidth: 32, frameHeight: 32 });
     }
     
     create() {
         //cria a imagem de fundo
-        this.add.image(0, 0, 'floresta').setOrigin(0).setScale(1.5);
+        this.add.image(0, 0, 'universo').setOrigin(0).setScale(1.5);
         
         // Adiciona as plataformas diretamente à cena
-        var platform1 = this.physics.add.image(100, 600, 'ground').setImmovable().setScale(0.1);
-        var platform2 = this.physics.add.image(100, 450, 'ground').setImmovable().setScale(0.1);
-        var platform3 = this.physics.add.image(300, 300, 'ground').setImmovable().setScale(0.1)
-        var platform4 = this.physics.add.image(20, 300, 'ground').setImmovable().setScale(0.1);
+        var platform1 = this.physics.add.image(100, 600, 'nave').setImmovable().setScale(0.1);
+        var platform2 = this.physics.add.image(100, 430, 'nave').setScale(0.1);
+        var platform3 = this.physics.add.image(500, 300, 'nave').setScale(0.1)
+        var platform4 = this.physics.add.image(20, 300, 'nave').setImmovable().setScale(0.1);
 
-        //retira a gravidade das plataformas
+        //desativa a gravidade das plataformas
         platform1.body.allowGravity = false;
         platform2.body.allowGravity = false;
         platform3.body.allowGravity = false;
         platform4.body.allowGravity = false;
 
-        //Placar que conta o tempo que está passando
+        //campo de texto que exibe o tempo passado
         tempotext = this.add.text(20, 20, 'Tempo:'+ tempo, {fontSize:'45px', fill:'white'});
 
-        // criando o cronometro. (um amigo me ensinou a fazer)
-        if(hasBeenToMain == 0 && resultado < 1){
-        setInterval(() => {
-            tempo++;
-            tempotext.setText('Tempo: ' + tempo)
-        }, 1000);
-    }
-
-    //aumenta o hasBeenToMain para evitar que o cronometro seja chamado duas vezes quando o jogador perder
-    hasBeenToMain = 1
-
-    //define as físicas e configurações do Tyler
-        tyler = this.physics.add.sprite(100, 450, 'tyler').setScale(2.4)
+        //configurações do Tyler
+        tyler = this.physics.add.sprite(100, 450, 'tyler').setScale(2.4);
         tyler.body.setSize(15, 23,true)
         tyler.anims.play('andar');
         this.isJumping = false;
@@ -83,9 +65,24 @@ class MainScene extends Phaser.Scene {
             frameRate: 10,
             repeat: -1
         });
+
+        //chama a função para remover a plataforma inicial depois de 7 segundos
+        this.time.addEvent({
+            delay: 7000, // Atraso de 7000 milissegundos (7 segundos)
+            callback: afundarPlataforma,
+            callbackScope: this,
+            loop: true
+        });
+
+        //remove plataforma
+        function afundarPlataforma() {
+            platform1.destroy()
+        }
+
         // Cria o cursor de teclado
         this.cursor = this.input.keyboard.createCursorKeys();
     }
+
 
     update() {
         // Movimento do personagem
@@ -104,10 +101,11 @@ class MainScene extends Phaser.Scene {
 
         // Verifica se o jogador está tocando no chão para permitir o pulo
         if (this.cursor.up.isDown && !this.isJumping) {
-            tyler.setVelocityY(-330);
+            tyler.setVelocityY(-350);
             this.isJumping = true;
         }
-        // Reseta pulo quando o jogador não estiver mais tocando no chão
+
+        // Reseta o pulo quando o jogador não estiver mais tocando no chão
         if (tyler.body.touching.down) {
             this.isJumping = false;
         }
@@ -117,15 +115,17 @@ class MainScene extends Phaser.Scene {
             this.transitionToScene("mainScene")
         }
 
-        //Inicia a cena 2 se o jogador atingir o limite superior da tela
+        //Inicia a tela final se o jogador atingir o limite superior da tela
         if(tyler.y < 0){
-            this.transitionToScene("Scene")
+
+            //resultado recebe tempo
+            resultado = tempo
+            this.transitionToScene("FinalScene")
         }
     }
 
     //função que troca de cena
     transitionToScene(cena) {
-        this.scene.start(cena); // Inicia a cena 1
+        this.scene.start(cena);
     }
 }
-
